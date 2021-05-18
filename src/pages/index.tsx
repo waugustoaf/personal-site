@@ -6,7 +6,7 @@ import {
   FaLinkedinIn,
   FaWhatsapp,
 } from 'react-icons/fa';
-import { FiChevronDown, FiChevronRight } from 'react-icons/fi';
+import { FiChevronDown } from 'react-icons/fi';
 import { HiOutlineMail } from 'react-icons/hi';
 import { CarouselCard } from '../components/CarouselCard';
 import { Header } from '../components/Header';
@@ -15,17 +15,11 @@ import {
   Entrance,
   Presentation,
   Skills,
-  SkillsCarousel,
+  SkillsGrid,
 } from '../styles/pages/home';
 import { skillsProvider } from '../utils/skillsProvider';
 
 const Home: React.FC = () => {
-  let slideSize = 1;
-
-  if (typeof window !== 'undefined') {
-    slideSize = window.innerWidth > 768 ? 3 : 1;
-  }
-
   return (
     <>
       <Entrance>
@@ -89,22 +83,13 @@ const Home: React.FC = () => {
       <Skills>
         <div className="header">
           <h2>Habilidades</h2>
-          <div className="push">
-            <p>arraste</p>
-            <FiChevronRight />
-          </div>
         </div>
 
-        <SkillsCarousel
-          isRTL={false}
-          showArrows={false}
-          pagination={false}
-          itemsToShow={slideSize}
-        >
+        <SkillsGrid>
           {skillsProvider.map(skill => (
-            <CarouselCard key={skill.id.toString()} skill={skill} />
+            <CarouselCard skill={skill} key={skill.id.toString()} />
           ))}
-        </SkillsCarousel>
+        </SkillsGrid>
       </Skills>
     </>
   );

@@ -1,19 +1,28 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+interface ContainerProps {
+  isTooLong?: boolean;
+  isMain: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   max-width: 20rem;
   margin: 0.5rem;
-  padding: 2rem;
+  padding: 1rem;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-  border-radius: 30px;
+  border-radius: 15px;
+  min-height: 5rem;
 
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 
+  ${props => !props.isMain && css`
+    opacity: 0.6;
+  `}
+
   svg {
-    font-size: 2rem;
+    flex: 1;
 
     & + svg {
       margin-left: 0.5rem;
@@ -21,26 +30,20 @@ export const Container = styled.div`
   }
 
   h2 {
+    flex: 4;
     font-size: 1.2rem;
-    margin-top: 0.5rem;
-  }
-
-
-  .text {
-    min-height: 10rem;
-    display: flex;
-    align-items: center;
-
-    p {
-      font-size: 0.8rem;
-      text-align: center;
-    }
+    font-weight: bold;
   }
 
   span {
-    font-weight: bold;
-    text-align: center;
+    margin-left: 0.7rem;
+    font-size: ${props => props.isTooLong ? '0.5rem' : '0.8rem'};
+    font-weight: 500;
+    text-align: right;
     text-transform: uppercase;
-    font-size: 0.8rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    border-radius: 10px;
   }
 `;

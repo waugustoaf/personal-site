@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import Carousel from 'react-elastic-carousel';
 
 const chevronAnimation = keyframes`
   0%, 100% {
@@ -9,13 +8,6 @@ const chevronAnimation = keyframes`
     transform: translateY(0.2rem);
   }
 `;
-const chevronAnimationRight = keyframes`
-  0%, 100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(0.5rem);
-  }`;
 
 export const Entrance = styled.section`
   display: flex;
@@ -144,29 +136,23 @@ export const Skills = styled.section`
     h2 {
       font-weight: bold;
     }
+  }
 
-    .push {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      p {
-        text-transform: uppercase;
-      }
-
-      svg {
-        animation: ${chevronAnimationRight} 1s linear infinite;
-        font-size: 1.5rem;
-      }
-
-    }
-    @media screen and (max-width: 425px) {
-      flex-direction: column;
-    }
+  @media screen and (max-width: 768px) {
+    padding: 3rem;
   }
 `;
 
-export const SkillsCarousel = styled(Carousel)`
+export const SkillsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 1rem;
   margin-top: 3rem;
-`;
 
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 425px) {
+    grid-template-columns: 1fr;
+  }
+`;
